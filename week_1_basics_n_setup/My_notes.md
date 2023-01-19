@@ -14,10 +14,16 @@ If you have problems setting up the env, you can check this video:
 We create SSH keys in order to connect to the GCP accountS
 
   * Creating a virtual machine on GCP
+Created in GCP an instance (linux based)
   * Connecting to the VM with SSH
+To connect we used `ssh -i $SSH_PATH antonis_hotmail@$EXTERNAL_GCP_VM_INSTANCE_IP`
   * Installing Anaconda
+There we `bash $ANACONDA_LINK_LINUX_VERSION.sh`
   * Installing Docker
   * Creating SSH `config` file
+We created config file `touch config` with Host and other details.
+
+To run it we used: `ssh de-zoomcamp`
   * Accessing the remote machine with VS Code and SSH remote
   * Installing docker-compose
   * Installing pgcli
