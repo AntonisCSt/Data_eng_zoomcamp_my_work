@@ -20,6 +20,9 @@ To connect we used `ssh -i $SSH_PATH antonis_hotmail@$EXTERNAL_GCP_VM_INSTANCE_I
   * Installing Anaconda
 There we `bash $ANACONDA_LINK_LINUX_VERSION.sh`
   * Installing Docker
+we first update the apt-get `sudo apt-get update`
+and then we install docker `sudo apt-get install docker.io`
+
   * Creating SSH `config` file
 We created config file `touch config` with Host and other details.
 
