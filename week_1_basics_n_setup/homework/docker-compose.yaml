@@ -1,0 +1,24 @@
+services:
+  pgdatabase:
+    image: "postgres:13"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - "./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+  pgadmin: 
+    image: "dpage/pgadmin4"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com 
+      - PGADMIN_DEFAULT_PASSWORD=root 
+    ports:
+      - "8080:80"
+  ingesting_data_2:
+    image: taxi_ingest:v002
+    command: ["--user=root", "--password=root", "--host=pgdatabase", "--port=5432", "--db=ny_taxi","--table_name=yellow_taxi_trips_1901", "--url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-01.csv.gz","--type_dataset=trip_data"]
+  ingesting_data_3:
+    image: taxi_ingest:v002
+    command: ["--user=root", "--password=root", "--host=pgdatabase", "--port=5432", "--db=ny_taxi","--table_name=yellow_taxi_trips_zone", "--url=https://s3.amazonaws.com/nyc-tlc/misc/taxi+_zone_lookup.csv","--type_dataset=zone_data"]

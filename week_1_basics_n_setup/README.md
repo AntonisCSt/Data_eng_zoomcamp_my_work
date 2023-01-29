@@ -17,6 +17,11 @@ if you have troubles setting up the environment and following along with the vid
 
 * [Introduction to Docker](https://www.youtube.com/watch?v=EYNwNlOrpr0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
   * Why do we need Docker
+
+running  `docker run -it python:3.8` you get the the python prompt
+However, running the   `docker run --entrypoint=bash -it python:3.8` you get a bash prompt that you can run bash commands!!! like pip etc...
+
+
   * Creating a simple "data pipeline" in Docker
 * [Ingesting NY Taxi Data to Postgres](https://www.youtube.com/watch?v=2JM-ziJt0WI&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
   * Running Postgres locally with Docker
