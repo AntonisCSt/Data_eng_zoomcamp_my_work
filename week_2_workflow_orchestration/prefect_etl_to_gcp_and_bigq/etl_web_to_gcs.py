@@ -15,8 +15,9 @@ def fetch(dataset_url: str) -> pd.DataFrame:
 @task(log_prints=True,retries=3)
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """fix dtype issues"""
-    df['tpep_pickup_datetime']  = pd.to_datetime(df['tpep_pickup_datetime'])
-    df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'])
+    print(f"columns: {df.dtypes}")
+    df['lpep_pickup_datetime']  = pd.to_datetime(df['lpep_pickup_datetime'])
+    df['lpep_dropoff_datetime'] = pd.to_datetime(df['lpep_dropoff_datetime'])
 
     print(df.head(2))
     print(f"columns: {df.dtypes}")
@@ -35,7 +36,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
 def write_gcs(path: Path) -> None:
     """Upload file to Gcs"""
 
-    gcp_cloud_storage_bucket_block = GcsBucket.load("week-2-zoom")
+    gcp_cloud_storage_bucket_block = GcsBucket.load("zoom-gcs")
     gcp_cloud_storage_bucket_block.upload_from_path(
         from_path=f"{path}",
         to_path=path
@@ -46,7 +47,7 @@ def write_gcs(path: Path) -> None:
 @flow(name=" ETL-TO-GCS-BUCKET")
 def etl_web_to_gcs() -> None:
     """the main ETL function"""
-    color = "yellow"
+    color = "green"
     year = 2021
     month = 1
     dataset_file = f"{color}_tripdata_{year}-{month:02}"
