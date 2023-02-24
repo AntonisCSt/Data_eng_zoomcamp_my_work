@@ -38,7 +38,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
 def write_gcs(path: Path) -> None:
     """Upload file to Gcs"""
 
-    gcp_cloud_storage_bucket_block = GcsBucket.load("week-2-zoom")
+    gcp_cloud_storage_bucket_block = GcsBucket.load("zoom-gcs")
     gcp_cloud_storage_bucket_block.upload_from_path(
         from_path=f"{path}",
         to_path=path
