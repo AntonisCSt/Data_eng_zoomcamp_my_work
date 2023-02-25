@@ -7,7 +7,7 @@ with green_data as (
 ), 
 
 yellow_data as (
-    select *, 
+    select *,
         'Yellow' as service_type
     from {{ ref('stg_yellow_tripdata') }}
 ), 

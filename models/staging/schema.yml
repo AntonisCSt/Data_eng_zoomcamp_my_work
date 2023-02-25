@@ -7,4 +7,5 @@ sources:
 
       tables:
         - name: rides_green
-        - name: rides_yellow
+        - name: rides_yellow_union
+        - name: rides_fhv
